@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %} Algoritma dan Struktur data{% endblock %}
+
+{% block content %}
+    <body>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </body>
+
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    </head>
+    
+    <div class="d-flex" id="dataContainer">
+        <h3 class="mt-3 mb-3 flex-grow-1">Data Barang</h3>
+        <div class="mx-1">
+            <form action="/search" method="GET">
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control bi bi-search" placeholder="Masukkan Nama Barang" name="kata-kunci" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-search"></i><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                          </svg></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="btn text-end mt-2">
+           
+            <a class="flex btn btn-outline-primary " href="#" data-bs-toggle="modal" data-bs-target="#tambahBarangModal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+              </svg></a>
+        </div>
+    </div>
+
+    <div class="alert alert-info">Waktu Eksekusi: {{ execution_time }}  detik</div>
+
+    <table class="table table-striped" id="dataTable">
+        <thead>
+            <tr>
+                <th>Nama Barang</th>
+                <th>ID</th>
+                <th>Stok Barang</th>
+                <th>Harga Barang</th>
+                <th>Lihat</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for barang in data_barang %}
+                <tr>
+                    <td><a href="{{ url_for('detail', id_barang=barang['id']) }}">{{ barang['nama_barang'] }}</a></td>
+                    <td>{{ barang['id'] }}</td>
+                    <td>{{ barang['stok_barang'] }}</td>
+                    <td>Rp.{{ barang['harga_barang'] }}</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning" href="">Hapus</a>
+                        <a class="btn btn-sm btn-primary" href="{{ url_for('detail', id_barang=barang['id']) }}">Lihat</a>
+                        <!-- Inside the loop for displaying items -->
+                        <a class="btn btn-sm btn-outline-primary" href="{{ url_for('tambah_keranjang', id_barang=barang['id']) }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                          </svg></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="modal fade" id="tambahBarangModal" tabindex="-1" aria-labelledby="tambahBarangModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-dialog">
+            <div class="modal-content bg-transparent border-0 rounded-3 custom-modal-content">
+                <div class="modal-header bg-primary text-light border-0 custom-modal-header">
+                    <h5 class="modal-title" id="tambahBarangModalLabel">+</h5>
+                    <button type="button" class="btn-close text-light" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body custom-modal-body">
+                    <!-- Formulir untuk menambahkan item baru -->
+                    <form action="/tambah_barang" method="POST">
+                        <div class="mb-3 custom-input-wrapper">
+                            <label for="name" class="form-label custom-label">Nama Barang</label>
+                            <input type="text" class="form-control rounded-pill custom-input" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3 custom-input-wrapper">
+                            <label for="id_barang" class="form-label custom-label">ID</label>
+                            <input type="number" class="form-control rounded-pill custom-input" id="id_barang" name="id_barang" required>
+                        </div>
+                        <div class="mb-3 custom-input-wrapper">
+                            <label for="stok_barang" class="form-label custom-label">Stok</label>
+                            <input type="number" class="form-control rounded-pill custom-input" id="stok_barang" name="stok_barang" required>
+                        </div>
+                        <div class="mb-3 custom-input-wrapper">
+                            <label for="harga_barang" class="form-label custom-label">Harga</label>
+                            <input type="number" class="form-control rounded-pill custom-input" id="harga_barang" name="harga_barang" required>
+                        </div>
+                        <!-- Buttons moved to the top -->
+                        <div class="modal-footer custom-modal-footer">
+                            <button type="submit" class="btn btn-primary rounded-pill custom-btn">Tambah Barang</button>
+                            <button type="button" class="btn btn-secondary rounded-pill custom-btn" data-bs-dismiss="modal">Tutup</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

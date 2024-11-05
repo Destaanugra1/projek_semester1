@@ -1,0 +1,73 @@
+.keranjang {
+    /* background: #ff9595; */
+    margin: auto;
+    /* padding: 10px; */
+}
+
+.cardKeranjang{
+    display: flex;
+}
+
+.dataBarang {
+    margin-left: 5px;
+}
+
+/* .beliProduk{
+    margin-left: 90%;
+    padding: 10px;
+    width: 100px;
+    background-color: green;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+   
+} */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.keranjang {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+}
+
+.cardKeranjang {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.cardKeranjang p {
+    margin: 5px 0;
+}
+
+.dataBarang {
+    flex: 1;
+    text-align: right;
+}
+
+.beliProduk {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.beliProduk:hover {
+    background-color: #45a049;
+}

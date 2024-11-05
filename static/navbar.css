@@ -1,0 +1,20 @@
+.nav-link:hover {
+    background-color: #8894a2;
+    border-radius: 120px ; 
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.bg-primary {
+    background-color: #2E3D50!important;
+}
+
+.alert-info {
+    color: #055160 !important;
+    background-color: #a75a2685 !important;
+}
+
+.bg-secces {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-succes-rgb),var(--bs-bg-opacity))!important;
+}

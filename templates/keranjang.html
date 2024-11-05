@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %} Algoritma dan Struktur Data {% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang Belanja</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .keranjang {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .cardKeranjang {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .cardKeranjang p {
+            margin: 5px 0;
+        }
+
+        .dataBarang {
+            flex: 1;
+            text-align: right;
+        }
+
+        .beliProduk, .Buy {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .beliProduk {
+            background-color: #3498db;
+        }
+
+        .beliProduk:hover {
+            background-color: #2980b9;
+        }
+
+        .Buy {
+            background-color: #4caf50;
+        }
+
+        .Buy:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="keranjang">
+        <h2>Rincian Produk yang akan di beli</h2>
+        <div class="cardKeranjang">
+            <div>
+                <p>Nama Barang</p>
+                <p>Harga</p>
+                <p>Stock</p>
+            </div>
+            <div class="dataBarang">
+                <p>:</p>
+                <p>:</p>
+                <p>:</p>
+            </div>
+            <div class="dataBarang">
+                <p>{{ data_barang.nama_barang }}</p>
+                <p>{{ data_barang.harga_barang }}</p>
+                <p>{{ data_barang.stok_barang }}</p>
+            </div>
+        </div>
+      
+        <a class="beliProduk" href="https://www.instagram.com/destaanugrahpr?igsh=b3AxNHk4ZGZocHJm">Hubungi</a>
+        <a class="Buy" href="/Buy">Buy</a>
+    </div>
+</body>
+</html>
+{% endblock %}

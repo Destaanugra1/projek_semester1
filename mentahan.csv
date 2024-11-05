@@ -1,0 +1,142 @@
+id,nama_barang,stok_barang,harga_barang
+1,Bergo Hijab,5,12000
+10,Blouse Rajut,5,45000
+100,sepatu putih,213,100000
+100,sepatu putih,100,100000
+100,Dasi SMP,213,100000
+11,Blazer Korean,5,65000
+12,Cargo Pants,3,55000
+13,Sweater Rajut,4,65000
+13,Sweater Rajut,4,65000
+14,Rok Plisket,3,32000
+14,Rok Plisket,3,32000
+15,Vest Rajut,5,45000
+15,Vest Rajut,5,45000
+16,Crop Top,6,34000
+17,Gamis,3,78000
+17,Gamis,3,78000
+18,Hot Pants,4,54000
+19,Celana Jogger,5,45000
+19,Celana Jogger,5,45000
+2,Hijab Pasmina,6,24000
+20,Rok Cargo Jeans,6,65000
+21,Dress Pesta,6,125000
+21,Dress Pesta,6,125000
+22,Pasmina Kaos,4,24000
+24,Sendal Slip On,2,45000
+24,Sendal Slip On,2,45000
+25,Pamina Silk,4,35000
+26,Sling Bag,6,56000
+27,Tas Ransel,8,65000
+27,Tas Ransel,8,65000
+28,Tote Bag,4,25000
+28,Tote Bag,4,25000
+29,Dompet Wanita,6,25000
+29,Dompet Wanita,6,25000
+3,Blouse,4,30000
+3,tws,100,100000
+30,Hand Bag,5,35000
+31,Parfume Wanita,3,85000
+31,Parfume Wanita,3,85000
+31,Parfume Wanita,3,85000
+32,Parfume Pria,4,75000
+33,Mukena Travel,4,68000
+34,Card Holder,6,45000
+345,jaket hitam,213,230000
+35,Kacamata Cat Eye,8,25000
+36,Kacamata Hitam,3,25000
+36,Kacamata Hitam,3,25000
+37,Sepatu Boots,4,90000
+37,Hijab Segiempat,8,16000
+37,Hijab Segiempat,8,16000
+38,Jacket Kulit,5,86000
+38,Jacket Kulit,5,86000
+39,One Set Blazer,4,125000
+39,One Set Blazer,4,125000
+4,Jeans Highwaist,2,75000
+40,Celana Olahraga,3,85000
+40,Celana Olahraga,3,85000
+402,sepatu hitam,21,50000
+41,Inner Turtleneck,6,34000
+42,Inner Turtleneck,6,34000
+43,Jepit Rambut Wanita,5,10000
+44,Hair Clip,3,5000
+44,Hair Clip,3,5000
+45,Ring,3,75000
+46,Bracelet,2,15000
+47,Kaos Kaki Wanita,6,6000
+48,Kaos Kaki Pria,4,8000
+48,Kaos Kaki Pria,4,8000
+480,sandal swallo,12,10000
+49,Kuku Palsu,6,25000
+5,Flatshoes,6,45000
+50,Celana Kulot,4,75000
+51,Kebaya,5,124000
+52,Koko,6,65000
+52,Koko,6,65000
+53,Legging,8,25000
+53,Legging,8,25000
+54,Jumpsuit,4,65000
+55,Piyama Panjang,2,85000
+55,Piyama Panjang,2,85000
+56,Piyama Pendek,4,75000
+57,Tunik Korean,5,85000
+57,Tunik Korean,5,85000
+58,Tank Top,5,25000
+59,Kaos Polo,3,65000
+6,Pantofel,4,45000
+60,One Set Olahraga,2,95000
+61,Daster Panjang,3,65000
+62,One Set Baby,7,85000
+63,Hoodie Oversize,5,65000
+64,Kemeja Crop Top,3,55000
+65,Kaftan,6,69000
+66,Gelang Pandora,2,90000
+67,Sweater Top,1,75000
+68,Knit Panjang,5,65000
+68,Knit Panjang,5,75000
+69,Hijab Segiempat,8,16000
+69,Hijab Segiempat,8,16000
+7,Sandal Wanita,2,40000
+70,Hand Bag,5,35000
+71,Celana Kulot,4,75000
+72,Daster Panjang,3,65000
+72,Daster Panjang,3,65000
+73,Tunik Korean,5,85000
+74,Koko,6,65000
+74,Celana Olahraga,3,85000
+75,Koko,6,65000
+76,Knit Panjang,5,65000
+77,Knit Panjang,5,65000
+78,One Set Blazer,4,125000
+789,kaos putih,10,230000
+79,One Set Blazer,4,125000
+79,One Set Blazer,4,125000
+79,Dasi SMP,3,100000
+79,id card,213,100000
+8,Sneakers,5,80000
+80,One Set Olahraga,2,95000
+81,Tank Top,5,25000
+82,Pasmina Kaos,4,24000
+83,Card Holder,6,45000
+84,Kaftan,6,69000
+85,Sendal Slip On,2,45000
+86,Gelang Pandora,2,90000
+88,Sweater Top,1,75000
+89,One Set Blazer,4,125000
+9,Cardigan Rajut,4,35000
+90,Hoodie Oversize,5,65000
+90,tas lenovo,2,400000
+91,Kebaya,5,124000
+92,One Set Baby,7,85000
+92,One Set Baby,7,85000
+93,Kaos Polo,3,65000
+94,Kaftan,6,69000
+95,Kaftan,6,69000
+96,Piyama Pendek,4,75000
+96,Piyama Pendek,4,75000
+97,Tunik Korean,5,85000
+98,Hoodie Oversize,5,65000
+98,Hoodie Oversize,5,65000
+99,Kemeja Crop Top,3,55000
+100,sepatu putih,213,100000

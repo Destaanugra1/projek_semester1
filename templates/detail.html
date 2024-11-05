@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Detail Barang{% endblock %}
+
+{% block content %}
+
+    <div class="border p-3 shadow">
+        <div class="mb-3">
+            <div>Nama Barang:</div>
+            <div>{{ data_barang.nama_barang }}</div>
+        </div>
+        <div class="mb-3">
+            <div>ID Barang:</div>
+            <div>{{ data_barang.id }}</div>
+        </div>
+        <div class="mb-3">
+            <div>Stok Barang:</div>
+            <div>{{ data_barang.stok_barang }}</div>
+        </div>
+        <div class="mb-3">
+            <div>Harga Barang:</div>
+            <div>Rp{{ data_barang.harga_barang }}</div>
+        </div>
+    </div>
+    <div class="alert alert-info">
+        Waktu eksekusi: {{ execution_time }} detik
+    </div>
+{% endblock %}

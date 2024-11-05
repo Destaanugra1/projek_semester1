@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='intro.css') }}">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .intro-section {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .intro-section img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+  <!-- Akhir gaya tambahan -->
+</head>
+<body>
+  {% extends 'base.html' %}
+
+  {% block title %}Introduction - Algoritma dan Struktur Data{% endblock %}
+
+  {% block content %}
+    <div class="intro-section">
+      <div class="wlc">
+        <h1 class="#">SELAMAT DATANG</h1>
+      </div>
+      <img src="{{ url_for('static', filename='/img/stle.jpg') }}" alt="intro image" class="img-fluid mt-3 mb-3">
+      
+    </div>
+  {% endblock %}
+</body>
+</html>

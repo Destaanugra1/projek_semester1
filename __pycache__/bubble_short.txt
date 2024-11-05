@@ -1,0 +1,238 @@
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+import time
+import csv
+import bantu
+
+app = Flask(__name__)
+
+data_barang_sementara = []
+keranjang_barang = []
+def sort_data_by_nama_barang(data):
+    return sorted(data, key=lambda x: x['nama_barang'])
+
+
+
+
+def proses():
+    for index in range(10):
+        print(index)
+        time.sleep(0.5)
+
+
+def read_data():
+    csv_data = []
+    with open("mentahan.csv", "r") as file:
+        csv_reader = csv.reader(file)
+        header = next(csv_reader)
+        for line in csv_reader:
+            if len(line) == 4:
+                row = {
+                    "id": line[0],
+                    "nama_barang": line[1],
+                    "stok_barang": line[2],
+                    "harga_barang": line[3],
+                }
+                csv_data.append(row)
+    # Urutkan berdasarkan ID
+    csv_data.sort(key=lambda x: x['id'])
+    return csv_data
+
+def bubble_sort(data, target_id):
+    n = len(data)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if data[j]['id'] == target_id:
+                return data[j]
+            elif data[j + 1]['id'] == target_id:
+                return data[j + 1]
+            elif data[j]['id'] > data[j + 1]['id']:
+                data[j], data[j + 1] = data[j + 1], data[j]
+    return None
+def tambah_barang_sementara(data_barang):
+    with open("mentahan.csv", "a+", newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([data_barang['id'], data_barang['nama_barang'], data_barang['stok_barang'], data_barang['harga_barang']])
+
+@app.route('/tambah_barang', methods=['POST'])
+def tambah_barang():
+    if request.method == 'POST':
+        id_barang = request.form.get('id_barang')
+        nama_barang = request.form.get('name')
+        stok_barang = request.form.get('stok_barang')
+        harga_barang = request.form.get('harga_barang')
+
+        if id_barang and nama_barang and stok_barang and harga_barang:
+            barang_baru = {
+                'id': id_barang,
+                'nama_barang': nama_barang,
+                'stok_barang': stok_barang,
+                'harga_barang': harga_barang
+            }
+
+            tambah_barang_sementara(barang_baru)
+
+            return redirect(url_for('project'))
+        else:
+            return "Gagal menambahkan barang. Mohon lengkapi semua data."
+
+@app.route('/tambah_ke_keranjang/<id_barang>', methods=['GET'])
+def tambah_keranjang(id_barang):
+    # Waktu mulai
+    start_time = time.time()
+    
+    data = read_data()
+
+    # Bubble sort
+    result = bubble_sort(data, id_barang)
+
+    end_time = time.time()  # Waktu selesai pencarian
+    execution_time = end_time - start_time
+
+    context_data = {
+        "data_barang": result,
+        "execution_time": float(execution_time),
+    }
+    return render_template('keranjang.html', **context_data)
+
+        
+@app.route('/')
+def index():
+    show_image = request.args.get('show_image', 'True').lower() == 'true'
+
+    start_time = time.time()
+    
+    data = read_data()
+
+    if show_image:
+        return render_template('loginv2.html')
+    else:
+        # Tambahkan data_barang_sementara ke data menggunakan append
+        data += data_barang_sementara
+
+        # Sort the combined data by 'nama_barang'
+        sorted_data = sorted(data, key=lambda x: x['nama_barang'])
+
+        end_time = time.time() 
+        waktu_eksekusi = end_time - start_time
+        context_data = {
+            "data_barang": sorted_data,
+            'waktu_eksekusi' : waktu_eksekusi
+        }
+        return render_template('intro.html', **context_data)
+        
+        
+@app.route("/search")
+def menampilkan_pencarian():
+    start_time = time.time()
+    kata_kunci = request.args.get('kata-kunci', '')
+    kata_kunci = kata_kunci.lower()
+    data_barang = read_data()
+    hasil_pencarian = bubble_sort(data_barang, kata_kunci)
+    hasil_pencarian = [
+    brg for brg in data_barang
+    if any(
+        str(brg.get(key, "")).lower().find(kata_kunci) != -1
+        for key in ["nama_barang", "id", "stok_barang", "harga_barang"]
+    )
+    ]
+           
+
+    end_time = time.time()  # Waktu selesai pencarian
+    execution_time = end_time - start_time
+
+    context_data = {
+        "data_barang": hasil_pencarian,
+        "execution_time": float(execution_time),
+    }
+    
+    return render_template('index.html', **context_data)
+
+@app.route('/projek')
+def project():
+    start_time = time.time()
+    kata_kunci = request.args.get('projek', '')  # Menangkap nilai 'projek' dari parameter URL
+    data_barang = read_data()
+    end_time = time.time()
+    hasil_pencarian = bubble_sort(data_barang, project)
+    execution_time = end_time - start_time
+    hasil_pencarian = []
+
+    for brg in data_barang:
+        if brg.get("nama_barang").lower().find(kata_kunci.lower()) != -1:
+            hasil_pencarian.append(brg)
+
+        if brg.get('id').lower().find(kata_kunci.lower()) != -1:
+            hasil_pencarian.append(brg)
+
+    end_time = time.time()  # Waktu selesai pencarian
+    execution_time = end_time - start_time
+
+
+
+    context_data = {
+        "data_barang": hasil_pencarian,
+        'execution_time' : execution_time
+    }
+    
+    return render_template('index.html', **context_data)
+
+
+
+@app.route('/team')
+def team():
+    return render_template('team.html')
+
+@app.route('/brg')
+def brg():
+    return render_template('tambahbarang.html')
+
+@app.route('/Buy')
+def buy():
+    return render_template('payment.html')
+
+@app.route('/kembali')
+def back():
+    return render_template('index.html')
+
+@app.route('/login')
+def lgn():
+    return render_template('login.html')
+
+@app.route('/sorted_barang')
+def sorted_barang():
+    start_time = time.time()
+    data = read_data()
+
+    # Sort the data by 'nama_barang'
+    sorted_data = sort_data_by_nama_barang(data)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    context_data = {
+        "data_barang": sorted_data,
+        "execution_time": execution_time
+    }
+
+    return render_template('index.html', **context_data)
+
+
+@app.route('/detail/<id_barang>')
+def detail(id_barang):
+    # Waktu mulai
+    start_time = time.time()
+    
+    data = read_data()
+
+    # Binary search
+    result = bubble_sort(data, id_barang)
+
+    end_time = time.time()  # Waktu selesai pencarian
+    execution_time = end_time - start_time
+
+    context_data = {
+        "data_barang": result,
+        "execution_time": float(execution_time),
+    }
+    return render_template('detail.html', **context_data)
+
+if __name__ == '__main__':
+    app.run(debug=True)

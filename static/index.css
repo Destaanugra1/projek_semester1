@@ -1,0 +1,37 @@
+.bt {
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Add your regular styling for the input */
+.modal-content {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.alert-info {
+  color: #2e3d50 !important;
+  background-color: #Feeecd!important;
+}
+
+/* .btn-primary {
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  right: 100px;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(img/stle.jpg);
+  background-size: 50%;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  
+}
